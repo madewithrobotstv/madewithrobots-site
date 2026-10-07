@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Made With Robots</title>
+  <meta name="description" content="Speculative and experimental work — made by humans with AI." />
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <link rel="preload" as="image" href="/assets/logo.png" />
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --fg: #f4f4f5;
+      --muted: #a1a1aa;
+      --accent: #d4d4d8;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: ui-sans-serif, system-ui, -apple-system, "SF Pro Text", "Inter", sans-serif;
+      font-weight: 300;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    main {
+      max-width: 42rem;
+      width: 100%;
+      text-align: center;
+    }
+    .logo {
+      width: clamp(180px, 40vw, 320px);
+      height: auto;
+      margin: 0 auto 2.5rem;
+      display: block;
+    }
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin: 0 0 1rem;
+    }
+    p.tagline {
+      color: var(--muted);
+      font-size: clamp(1rem, 2.5vw, 1.125rem);
+      margin: 0 0 2.5rem;
+    }
+    p.contact a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 1px;
+    }
+    p.contact a:hover { color: var(--accent); }
+    @media (prefers-color-scheme: light) {
+      :root { --bg: #fafafa; --fg: #18181b; --muted: #52525b; --accent: #3f3f46; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="/assets/logo.png" alt="Made With Robots" />
+    <h1>Made With Robots</h1>
+    <p class="tagline">Speculative and experimental work — made by humans with AI.</p>
+    <p class="contact">
+      <a href="mailto:madewithrobots.tv@gmail.com">madewithrobots.tv@gmail.com</a>
+    </p>
+  </main>
+</body>
+</html>
