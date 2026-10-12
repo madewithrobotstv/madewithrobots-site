@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blender Map Workflow — Made With Robots</title>
+  <meta name="description" content="A portable GIS-to-Blender pipeline for building editable relief maps from real elevation and boundary data." />
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0b0b0d;
+      --muted: #52525b;
+      --accent: #3f3f46;
+      --rule: #e4e4e7;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 5rem 2rem 6rem;
+    }
+    main { max-width: 40rem; margin: 0 auto; }
+    a { color: var(--fg); }
+    .back { margin: 0 0 3rem; font-size: 0.9375rem; }
+    .back a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+    }
+    .back a:hover { color: var(--fg); border-bottom-color: var(--accent); }
+    h1 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.75rem;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.9375rem;
+      margin: 0 0 2.5rem;
+    }
+    figure { margin: 0 0 2.5rem; }
+    figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--rule);
+    }
+    figcaption {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+    h2 {
+      font-size: 1.0625rem;
+      font-weight: 500;
+      margin: 2.5rem 0 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    p { margin: 0 0 1.15rem; }
+    ul { margin: 0 0 1.15rem; padding-left: 1.15rem; }
+    li { margin: 0 0 0.4rem; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.875em;
+      background: #f4f4f5;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+    }
+    .credit {
+      color: var(--muted);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--rule);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      line-height: 1.55;
+    }
+    .credit p { margin: 0 0 0.6rem; }
+    .repo {
+      display: inline-block;
+      margin-top: 0.5rem;
+      border-bottom: 1px solid var(--accent);
+      text-decoration: none;
+      padding-bottom: 1px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="back"><a href="/work/">Work</a></p>
+
+    <h1>Blender Map Workflow</h1>
+    <p class="meta">Released October 2026 · Open source, MIT · <a class="repo" href="https://github.com/madewithrobotstv/blender-map-workflow">Repository</a></p>
+
+    <figure>
+      <img src="/assets/blender-map-workflow-preview.jpg" alt="Stylized relief map of the United States, with Alaska and Hawaii insets, built in Blender from real elevation data" />
+      <figcaption>United States relief map built with the workflow: contiguous states, Alaska in its own projection, and Hawaii's main islands as a labelled inset. Colours are stylized elevation bands and the relief is deliberately exaggerated.</figcaption>
+    </figure>
+
+    <p>A map is only useful if you can change it. Most relief maps arrive as a finished image, so the moment someone asks for a different extent, a closer view, or a different palette, the work starts over. This workflow builds the map as an editable Blender scene instead: terrain you can reshape, boundaries and labels as separate objects, and a camera rig on ordinary drivers rather than a custom add-on.</p>
+
+    <p>You drive it by asking an LLM to read the skill and follow it, in the same folder as your project. It fetches real elevation and boundary data, builds the scene in a fresh background Blender process, then reopens the saved file and checks its own work before handing anything back.</p>
+
+    <h2>What it does</h2>
+    <ul>
+      <li>Builds terrain from real bare-earth elevation, in a projected metre CRS appropriate to the region</li>
+      <li>Keeps state boundaries, rivers, lakes, labels and the ocean as independent, editable elements</li>
+      <li>Separates display mesh density from shading detail, so finer relief survives as packed normal textures instead of geometry everywhere</li>
+      <li>Leaves missing data missing — it fails a coverage check rather than filling gaps with invented terrain</li>
+      <li>Records source URLs, acquisition dates and SHA256 hashes per map, and packs images so the scene still renders after you move it</li>
+    </ul>
+
+    <h2>How it is honest about itself</h2>
+    <p>Saving a file is not proof the map is right, so the workflow treats them separately. After building, it reopens the saved scene in a fresh process and checks packed assets, drivers, terrain finiteness, feature counts, draping and framing, then a separate pass inspects the render. Failed checks are reported as failures.</p>
+    <p>It has been tested end to end on one configuration — Blender 5.2.2 LTS on macOS Metal. Other versions and platforms are expected to work but should run their own checks. The bundled data adapters cover U.S. sources (USGS 3DEP elevation, Census 2024 boundaries); other countries need an adapter, though the scene-construction principles travel.</p>
+
+    <div class="credit">
+      <p>Elevation: U.S. Geological Survey, 3DEP. State boundaries: U.S. Census Bureau, 2024 Cartographic Boundary Files. Map styling and the workflow itself: Made With Robots.</p>
+      <p>The agencies supply geographic data; this visualization does not imply their endorsement.</p>
+      <p><a class="repo" href="https://github.com/madewithrobotstv/blender-map-workflow">github.com/madewithrobotstv/blender-map-workflow</a></p>
+    </div>
+  </main>
+</body>
+</html>

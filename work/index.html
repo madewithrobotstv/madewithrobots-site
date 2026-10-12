@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Work — Made With Robots</title>
+  <meta name="description" content="Tools and experiments built by Made With Robots — speculative, experimental work made by humans with AI." />
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0b0b0d;
+      --muted: #52525b;
+      --accent: #3f3f46;
+      --rule: #e4e4e7;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 5rem 2rem 6rem;
+    }
+    main { max-width: 46rem; margin: 0 auto; }
+    a { color: inherit; }
+    .back { margin: 0 0 3rem; font-size: 0.9375rem; }
+    .back a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+    }
+    .back a:hover { color: var(--fg); border-bottom-color: var(--accent); }
+    h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin: 0 0 1rem;
+    }
+    .lede {
+      color: var(--muted);
+      font-size: clamp(1rem, 2.5vw, 1.125rem);
+      margin: 0 0 3.5rem;
+      max-width: 34rem;
+    }
+    .entry {
+      display: block;
+      text-decoration: none;
+      border-top: 1px solid var(--rule);
+      padding: 2rem 0 2.25rem;
+    }
+    .entry img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 0 1.5rem;
+      border: 1px solid var(--rule);
+    }
+    .entry h2 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .entry p {
+      color: var(--muted);
+      margin: 0 0 1rem;
+      max-width: 34rem;
+    }
+    .entry .more {
+      font-size: 0.9375rem;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 1px;
+    }
+    .entry:hover h2 { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="back"><a href="/">Made With Robots</a></p>
+    <h1>Work</h1>
+    <p class="lede">Tools and experiments we have built and released. Added when there is something worth showing, not on a schedule.</p>
+
+    <a class="entry" href="/work/blender-map-workflow/">
+      <img src="/assets/blender-map-workflow-preview.jpg" alt="Stylized relief map of the United States, with Alaska and Hawaii insets, built in Blender from real elevation data" />
+      <h2>Blender Map Workflow</h2>
+      <p>A portable GIS-to-Blender pipeline that builds editable relief maps from real elevation and boundary data, with the source data and verification reports to go with them.</p>
+      <p class="more">Read more</p>
+    </a>
+  </main>
+</body>
+</html>
