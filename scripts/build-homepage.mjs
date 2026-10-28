@@ -1,0 +1,11 @@
+import { execFileSync } from 'node:child_process';
+import { readFileSync, writeFileSync, renameSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+const dir='assets/homepage/';
+execFileSync('npx',['--yes','esbuild@0.25.12',dir+'scene.js','--bundle','--format=esm','--target=es2022','--minify','--legal-comments=eof','--alias:three/webgpu=./'+dir+'three.webgpu.js','--alias:three=./'+dir+'three.webgpu.js','--outfile='+dir+'scene.build.js'],{stdio:'inherit'});
+const digest=createHash('sha256').update(readFileSync(dir+'scene.build.js')).digest('hex').slice(0,10);
+const name='scene.'+digest+'.min.js';renameSync(dir+'scene.build.js',dir+name);
+let html=readFileSync('index.html','utf8');
+html=html.replace(/\/assets\/homepage\/scene(?:\.[a-f0-9]{10}\.min)?\.js(?:\?[^'"]*)?/g,'/'+dir+name);
+writeFileSync('index.html',html);
+console.log('Homepage bundle:',name);
