@@ -272,6 +272,9 @@ document.querySelector('#replay').onclick=playShot;
 let autoplayPending=!reduce;
 if(reduce){setSignal(true,signalTime()-2*ROLL_CYCLE);blend=1}
 let firstFrame=true;
+// Keep the loading message visible through GPU shader preparation.
+camera.position.set(Math.sin(yaw)*Math.cos(pitch)*distance,target.y+Math.sin(pitch)*distance,Math.cos(yaw)*Math.cos(pitch)*distance);camera.lookAt(target);
+await renderer.compileAsync(scene,camera);
 renderer.setAnimationLoop(t=>{
 if(autoplayPending){autoplayPending=false;playShot()}
 if(shotStart!==null){
