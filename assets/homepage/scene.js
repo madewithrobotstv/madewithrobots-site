@@ -116,7 +116,9 @@ for(let i=0;i<curtainPositions.count;i++){const x=curtainPositions.getX(i);curta
 const curtain=mesh(curtainGeo,mat('#171c17',.98));curtain.position.set(0,5,-3.3);
 // A loose cable on the table adds scale without obscuring the hero object.
 const coilPoints=[];for(let i=0;i<=90;i++){const a=i/90*Math.PI*5;coilPoints.push(new THREE.Vector3(-1.12+Math.cos(a)*(.32-i*.0018),2.58+Math.sin(a*.5)*.009,-.3+Math.sin(a)*.38))}mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(coilPoints),110,.014,6,false),dark);
-const powerLed=mesh(new THREE.SphereGeometry(.027,12,8),new THREE.MeshBasicMaterial({color:'#ffd66b',toneMapped:false}),tv);powerLed.position.set(.91,.27,.9);
+// Recess the indicator into the Blender fascia instead of the old procedural face depth.
+const ledMount=mesh(new THREE.CylinderGeometry(.037,.037,.026,24),dark,tv);ledMount.rotation.x=Math.PI/2;ledMount.position.set(.91,.27,.718);
+const powerLed=mesh(new THREE.SphereGeometry(.024,20,12),new THREE.MeshBasicMaterial({color:'#ffd66b',toneMapped:false}),tv);powerLed.scale.z=.5;powerLed.position.set(.91,.27,.733);
 const ambient=new THREE.HemisphereLight('#efe0bd','#756c59',1.15);scene.add(ambient);
 const warm=new THREE.PointLight('#ffd49b',95,20,2);warm.position.set(.25,5.1,-.3);warm.castShadow=true;warm.shadow.mapSize.set(2048,2048);warm.shadow.bias=-.001;warm.shadow.normalBias=.035;warm.shadow.radius=5;scene.add(warm);
 const fill=new THREE.DirectionalLight('#e6edf2',1);fill.position.set(-4,6,5);scene.add(fill);
