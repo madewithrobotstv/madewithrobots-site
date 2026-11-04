@@ -107,6 +107,8 @@
     </figure>
     <p>A script describes an edit in words; a timeline makes it visible and editable on screen. This workflow automates the translation between those two mediums. A document of interview selects provides the passages, speakers, sources and timestamps, and Python and pyavb help turn those instructions into an Avid review assembly.</p>
     <p>In this experiment, an assistant editor provided the selects document and a short, manually assembled Avid sequence. An AI coding agent used the sequence as a reference and pyavb to build a separate review bin with the remaining passages in the document’s order. The editor could then open the timeline in Media Composer, review the placements and trim the results.</p>
+    <h2>Why this surprised me</h2>
+    <p>I’d tried to bridge this gap before using EDL, XML and AAF, without success. So I was surprised by how easily an agent could use pyavb to read the contents of an Avid bin and rewrite it into a working review bin. In this initial use, the generated bin opened in Media Composer without issue.</p>
     <h2>The reference is the guide</h2>
     <p>The reference sequence carries information a list of filenames does not: how the project’s grouped sources relate to the interviews, which camera and audio tracks are in use, and how the editor handles spacing and section slates. The workflow traces those relationships, checks the time origin for each interview part and preserves the requested order of the selects.</p>
     <p>Where exact out points are unavailable, the first pass can estimate durations from the dialogue, subject to the editor’s direction. The result is a starting point for review; pauses, delivery and editorial timing still need a person’s attention.</p>
