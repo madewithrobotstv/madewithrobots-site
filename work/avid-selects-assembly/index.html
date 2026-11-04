@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>From Interview Selects to an Avid Review Assembly — Made With Robots</title>
+  <meta name="description" content="An AI-assisted documentary editing workflow for building an Avid review assembly from interview selects." />
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0b0b0d;
+      --muted: #52525b;
+      --accent: #3f3f46;
+      --rule: #e4e4e7;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 5rem 2rem 6rem;
+    }
+    main { max-width: 40rem; margin: 0 auto; }
+    a { color: var(--fg); }
+    .back { margin: 0 0 3rem; font-size: 0.9375rem; }
+    .back a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+    }
+    .back a:hover { color: var(--fg); border-bottom-color: var(--accent); }
+    h1 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.75rem;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.9375rem;
+      margin: 0 0 2.5rem;
+    }
+    figure { margin: 0 0 2.5rem; }
+    figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--rule);
+    }
+    figcaption {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+    h2 {
+      font-size: 1.0625rem;
+      font-weight: 500;
+      margin: 2.5rem 0 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    p { margin: 0 0 1.15rem; }
+    ul { margin: 0 0 1.15rem; padding-left: 1.15rem; }
+    li { margin: 0 0 0.4rem; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.875em;
+      background: #f4f4f5;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+    }
+    .credit {
+      color: var(--muted);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--rule);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      line-height: 1.55;
+    }
+    .credit p { margin: 0 0 0.6rem; }
+    .repo {
+      display: inline-block;
+      margin-top: 0.5rem;
+      border-bottom: 1px solid var(--accent);
+      text-decoration: none;
+      padding-bottom: 1px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="back"><a href="/work/">Work</a></p>
+    <h1>From Interview Selects to an Avid Review Assembly</h1>
+    <p class="meta">A practical workflow for AI-assisted documentary editing</p>
+    <p>Interview selects often start as a document: a set of passages, organized by topic, each with a speaker, a source and a timestamp. Turning those choices into a sequence means finding and placing each passage, one at a time, before the real work of shaping the edit can begin.</p>
+    <p>In this experiment, an assistant editor provided the selects and a short, manually assembled Avid sequence. An AI coding agent used that sequence as a reference to build a separate review bin with the remaining passages. The editor could then open the bin in Media Composer, review the placements and trim the results.</p>
+    <h2>The reference is the guide</h2>
+    <p>The reference sequence carries information a list of filenames does not: how the project’s grouped sources relate to the interviews, which camera and audio tracks are in use, and how the editor handles spacing and section slates. The workflow traces those relationships, checks the time origin for each interview part and preserves the requested order of the selects.</p>
+    <p>Where exact out points are unavailable, the first pass can estimate durations from the dialogue, subject to the editor’s direction. The result is a starting point for review; pauses, delivery and editorial timing still need a person’s attention.</p>
+    <h2>What happened</h2>
+    <p>In an initial production use, the editor confirmed that the generated bin loaded in Avid and reported that the clips and selects were correctly placed during review. The editor estimated the assembly work was roughly 10× faster. That is an informal observation from one use, not a controlled benchmark. Complete review of every generated cut and title, and compatibility across other projects and Avid versions, remain to be established.</p>
+    <h2>Checking the handoff</h2>
+    <p>The implementation used Python and <a href="https://github.com/markreidvfx/pyavb">pyavb</a>, an independent library for reading and writing Avid bins. Before handoff, structural checks can verify track endpoints, source bounds and corresponding picture and audio edits. Playback, sync, media linking and title rendering still need to be checked in Media Composer.</p>
+    <p>The workflow report describes the process and its limitations. The original project-specific script and production materials are not included, so the report is a guide to adapting the approach rather than a ready-to-run tool.</p>
+    <div class="credit"><p>Made With Robots · An independent workflow, not an official Avid integration.</p></div>
+  </main>
+</body>
+</html>
