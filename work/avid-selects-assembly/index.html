@@ -3,8 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>From Interview Selects to an Avid Review Assembly — Made With Robots</title>
-  <meta name="description" content="An AI-assisted documentary editing workflow for building an Avid review assembly from interview selects." />
+  <title>Avid Editing Automation: From Interview Script to Timeline | Made With Robots</title>
+  <meta name="description" content="How an AI agent used Python and pyavb to turn documentary interview selects into an Avid Media Composer review assembly." />
+  <link rel="canonical" href="https://madewithrobots.tv/work/avid-selects-assembly/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="From Interview Selects to an Avid Review Assembly" />
+  <meta property="og:description" content="How an AI agent used Python and pyavb to turn documentary interview selects into an Avid Media Composer review assembly." />
+  <meta property="og:url" content="https://madewithrobots.tv/work/avid-selects-assembly/" />
+  <meta property="og:image" content="https://madewithrobots.tv/assets/avid-selects-illustration.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"From Interview Selects to an Avid Review Assembly","description":"How an AI agent used Python and pyavb to turn documentary interview selects into an Avid Media Composer review assembly.","author":{"@type":"Organization","name":"Made With Robots","url":"https://madewithrobots.tv/"},"image":"https://madewithrobots.tv/assets/avid-selects-illustration.png","mainEntityOfPage":"https://madewithrobots.tv/work/avid-selects-assembly/"}
+  </script>
   <link rel="icon" type="image/png" href="/assets/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,6 +88,7 @@
       padding: 0.1em 0.35em;
       border-radius: 3px;
     }
+    .topics { color: var(--muted); font-size: 0.875rem; margin: 2rem 0 0; line-height: 1.7; }
     .credit {
       color: var(--muted);
       font-size: 0.875rem;
@@ -117,6 +128,7 @@
     <h2>Checking the handoff</h2>
     <p>The implementation used Python and <a href="https://github.com/markreidvfx/pyavb">pyavb</a>, an independent library for reading and writing Avid bins. Before handoff, structural checks can verify track endpoints, source bounds and corresponding picture and audio edits. Playback, sync, media linking and title rendering still need to be checked in Media Composer.</p>
     <p>The workflow report describes the process and its limitations. The original project-specific script and production materials are not included, so the report is a guide to adapting the approach rather than a ready-to-run tool.</p>
+    <p class="topics"><strong>Topics:</strong> Avid Media Composer · Documentary Editing · Workflow Automation · AI-Assisted Editing · pyavb · Script to Screen</p>
     <div class="credit"><p>Made With Robots · An independent workflow, not an official Avid integration.</p></div>
   </main>
 </body>
